@@ -67,8 +67,8 @@ int extra, extra2;
 
 void loop()
 {
-    clear(0xff0000, 5);
-    delay(1000);
+    //clear(0xff0000, 5);
+    //delay(1000);
 
     for (int i=0; i < 250 ;i++){ 
         extra = random(-30,40);
