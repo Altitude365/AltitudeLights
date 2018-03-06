@@ -63,11 +63,19 @@ struct Segment {
   u8 lengthPercent;
 };
 
+int extra, extra2;
 
 void loop()
 {
     clear(0xff0000, 3000);
     delay(1000);
+
+    for (i=0; i < 250 ;i++){ 
+        extra = random(-30,40);
+        extra2 = random(-83,40);
+        pixels.setPixelColor(random(pxcount), (36 + extra), (83 + extra2), (214 + extra));
+    }
+    pixels.show();
 }
 
 
