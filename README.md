@@ -6,10 +6,13 @@ This is a tool to speed up development of animated patterns for [WS2812B](https:
 (https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library). It consists of a library that has the same interface as the NeoPixel library but that, instead of writing to actual WS2812B LEDs, renders the LEDs on screen using OpenGL. In addition, there's simple adapter code and implementations of a couple of the most common functions used in Arduino sketches (`delay()`, `random()` and `millis()`).
 
 #### Competition
+
+<img align="right" width="50%" src="./IRL.png">
+
 Help us code the coolest pixel patterns and win a brand new [thing] at the end of this summer.
 
 ### Your code
-The code is going to be imported and run in our physical installation for validation. The hardware we use is and [Particle photon](https://docs.particle.io/guide/getting-started/intro/photon/) and some functionality in the emulator might not be compatible with the photon libraries.
+The code is going to be imported and run in our physical installation for validation. The hardware we use is a [Particle photon](https://docs.particle.io/guide/getting-started/intro/photon/) and some functionality in the emulator might not be compatible with the photon libraries. So be careful with advanced code or external libraries.
 
 #### Setup and Use
 These instructions should work on Ubuntu on WSL, Ubuntu, Mint and other Debian based systems.
