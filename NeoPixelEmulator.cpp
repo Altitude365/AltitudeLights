@@ -160,8 +160,8 @@ void NeoPixelEmulator::drawLedRing()
             uint32_t c = pixels[CurrentPixel];
             uint8_t R, G, B;
             colorPackedToScalar(&R, &G, &B, c);
-            drawFilledCircle(xCenter + (CircleRadiusNow * cos(i * 2.0f * M_PI / NumberOfStripes)),
-                            yCenter + (CircleRadiusNow * sin(i * 2.0f * M_PI / NumberOfStripes)),
+            drawFilledCircle(xCenter + (CircleRadiusNow * cos(i * 1.5f * M_PI / NumberOfStripes)),
+                            yCenter + (CircleRadiusNow * sin(i * 1.5f * M_PI / NumberOfStripes)),
                             ledRadius, R, G, B);
         }
 
