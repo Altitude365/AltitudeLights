@@ -54,9 +54,7 @@ public:
     }
 
 private:
-    void drawLedStrip();
     void drawLedRing();
-    void drawLedGrid();
     void drawFilledCircle(float x, float y, float r, u8 R, u8 G, u8 B);
     void __drawFilledCircle(float x, float y, float r);
     void colorPackedToScalar(uint8_t* R, uint8_t* G, uint8_t* B, uint32_t color);

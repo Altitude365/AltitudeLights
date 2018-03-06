@@ -23,17 +23,10 @@ void NeoPixelEmulator::begin(void)
 void NeoPixelEmulator::show(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    switch (_pixelLayout) {
-    case Strip:
-        drawLedStrip();
-        break;
-    case Ring:
-        drawLedRing();
-        break;
-    case Grid:
-        drawLedGrid();
-        break;
-    }
+    
+    drawLedRing();
+        
+    
     // Double buffering.
     glutSwapBuffers();
     // GLUT process events, redrew screen.
@@ -160,52 +153,14 @@ void NeoPixelEmulator::drawLedRing()
             uint32_t c = pixels[CurrentPixel];
             uint8_t R, G, B;
             colorPackedToScalar(&R, &G, &B, c);
-            drawFilledCircle(xCenter + (CircleRadiusNow * cos(((NumberOfStripes - i) - 4) * 1.5f * M_PI / NumberOfStripes)),
-                            yCenter + (CircleRadiusNow * sin(((NumberOfStripes - i) - 4)  * 1.5f * M_PI / NumberOfStripes)),
+            drawFilledCircle(xCenter + (CircleRadiusNow * cos(((NumberOfStripes - i) - 3.5) * 1.5f * M_PI / NumberOfStripes)),
+                            yCenter + (CircleRadiusNow * sin(((NumberOfStripes - i) - 3.5)  * 1.5f * M_PI / NumberOfStripes)),
                             ledRadius, R, G, B);
         }
     }
 }
 
-// Draw LED grid where the LEDs are ordered in a continuous, back-and-forth sequence.
-void NeoPixelEmulator::drawLedGrid()
-{
-    float xCenter = 500.0f;
-    float yCenter = 500.0f;
-    float maxLedRadius = 50.0f;
-    float maxDimSize = 760.0f;
-    float ledToSpaceRatio = 1.5f;
 
-    int numLedsEachDim = sqrt(numPixels());
-    float ledRadius = maxLedRadius;
-    float ledAndSpaceSize = ledRadius * ledToSpaceRatio;
-    float dimSize = numLedsEachDim * ledAndSpaceSize;
-    if (dimSize > maxDimSize) {
-        dimSize = maxDimSize;
-        ledRadius = dimSize / numLedsEachDim / ledToSpaceRatio;
-        ledAndSpaceSize = ledRadius * ledToSpaceRatio;
-    }
-
-    int numLedsX = numLedsEachDim;
-    int numLedsY = numLedsEachDim;
-
-    for (int y = 0; y < numLedsY; ++y) {
-        for (int x = 0; x < numLedsX; ++x) {
-            uint32_t c;
-            if (y & 1) {
-                c = pixels[x + y * numLedsX];
-            }
-            else {
-                c = pixels[numLedsX - x - 1 + y * numLedsX];
-            }
-            uint8_t R, G, B;
-            colorPackedToScalar(&R, &G, &B, c);
-            drawFilledCircle(xCenter - dimSize / 2.0f + (ledAndSpaceSize / 2.0f) + x * ledAndSpaceSize,
-                             yCenter - dimSize / 2.0f + (ledAndSpaceSize / 2.0f) + y * ledAndSpaceSize,
-                             ledRadius, R, G, B);
-        }
-    }
-}
 
 void NeoPixelEmulator::drawFilledCircle(float x, float y, float r, u8 R, u8 G, u8 B)
 {
