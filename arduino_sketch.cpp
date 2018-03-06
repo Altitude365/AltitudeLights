@@ -67,8 +67,8 @@ int extra, extra2;
 
 void loop()
 {
-    //clear(0xff0000, 800);
-    //delay(1000);
+    clear(0xff0000, 800);
+    delay(1000);
 
     for (int i=0; i < 250 ;i++){ 
         extra = random(-30,40);
@@ -80,13 +80,10 @@ void loop()
 
 void clear(u32 color, u16 clearMs)
 {
-    u16 delayMs = clearMs / pixels.numPixels();
     for (u16 i = 0; i < pixels.numPixels(); ++i) {
         pixels.setPixelColor(i, color);
-        if (delayMs) {
-            pixels.show();
-            delay(delayMs);
-        }
+        pixels.show();
+        delay(clearMs);
     }
 }
 
