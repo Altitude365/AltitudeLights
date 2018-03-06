@@ -13,15 +13,12 @@ Help us code the coolest pixel patterns and win a brand new [thing] at the end o
 ##### Your code
 The code is going to be imported and run in our physical installation for validation. The hardware we use is a [Particle photon](https://docs.particle.io/guide/getting-started/intro/photon/) and some functionality in the emulator might not be compatible with the photon libraries. So be careful with advanced code or external libraries.
 
-
-
-
-
-
 ### Setup and Use
 These instructions should work on Ubuntu on WSL, Ubuntu, Mint and other Debian based systems.
 
 ##### Linux subsystem
+If you are a Windows 10 user like me follow this guide to run the code on "Windows Subsystem for Linux" (WSL).
+If know what you are doing or if you are a linux user, just clone the code and get going.
 ```Powershell
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ```
