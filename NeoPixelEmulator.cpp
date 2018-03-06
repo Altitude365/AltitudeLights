@@ -105,32 +105,6 @@ void NeoPixelEmulator::clear()
 
 const int maxLedRadius = 50;
 
-void NeoPixelEmulator::drawLedStrip()
-{
-    float xCenter = 500.0f;
-    float yCenter = 500.0f;
-    float maxLedRadius = 50.0f;
-    float maxSize = 760.0f;
-    float ledToSpaceRatio = 1.5f;
-
-    float ledRadius = maxLedRadius;
-    float ledAndSpaceSize = ledRadius * ledToSpaceRatio;
-    float size = numPixels() * ledAndSpaceSize;
-    if (size > maxSize) {
-        size = maxSize;
-        ledRadius = size / numPixels() / ledToSpaceRatio;
-        ledAndSpaceSize = ledRadius * ledToSpaceRatio;
-    }
-    for (int x = 0; x < numPixels(); ++x) {
-        uint32_t c = pixels[x];
-        uint8_t R, G, B;
-        colorPackedToScalar(&R, &G, &B, c);
-        drawFilledCircle(xCenter - size / 2.0f + (ledAndSpaceSize / 2.0f) + x * ledAndSpaceSize,
-                         yCenter,
-                         ledRadius, R, G, B);
-    }
-}
-
 void NeoPixelEmulator::drawLedRing()
 {
     //new
