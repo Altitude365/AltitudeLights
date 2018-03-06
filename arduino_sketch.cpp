@@ -66,10 +66,7 @@ struct Segment {
 
 void loop()
 {
-    for (u16 i = 0; i < 2700; ++i) {
-        pixels.setPixelColor(i, 0xff0000);
-    }
-    pixels.show();
+    clear(0xff0000, 3000);
     delay(1000);
 }
 
