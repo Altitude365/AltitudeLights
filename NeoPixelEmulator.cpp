@@ -140,6 +140,30 @@ void NeoPixelEmulator::drawLedStrip()
 
 void NeoPixelEmulator::drawLedRing()
 {
+    //new
+    int NumberOfStripes = 18;
+    int PxPerStripe = 150;
+    float StartAngle = 0;
+    float OffsetAngle = 15;
+    float pxDistance = 12;
+    float centerOfset = 20;
+
+    for (int i = 0; i < NumberOfStripes; i++) {
+        //For each stripe
+        CircleRadiusNow = centerOfset + (i * pxDistance);
+
+        for (int px = 0; px <PxPerStripe; px++) {
+            uint32_t c = pixels[i];
+            uint8_t R, G, B;
+            colorPackedToScalar(&R, &G, &B, c);
+            drawFilledCircle(xCenter + (CircleRadiusNow * cos(i * 2.0f * M_PI / numPixels())),
+                            yCenter + (CircleRadiusNow * sin(i * 2.0f * M_PI / numPixels())),
+                            ledRadius, R, G, B);
+        }
+
+    }
+
+    //old
     float xCenter = 500.0f;
     float yCenter = 500.0f;
     float maxCircleRadius = 380.0f;
