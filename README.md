@@ -1,4 +1,4 @@
-#### Adafruit NeoPixel Emulator
+#### Alitude Lights NeoPixel Emulator
 
 <img align="right" width="50%" src="./screenshot.png">
 
@@ -13,6 +13,11 @@ Strip, Grid and Ring layouts are supported for the on-screen rendering of the LE
 This was used for developing some NeoPixel patterns for a DigiSpark ATtiny85. The DigiSpark is a convenient platform for running battery powered blinky lights but is not so convenient for development as it must be unplugged and plugged back into the USB port each time the code is updated (which can easily be hundreds of times when tweaking parameters for animated effects, etc). Hence this small app. 
 
 #### Setup and Use
+
+##### Linux subsystem
+```Powershell
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux`
+```
 
 As Douglas Adams might have said, getting things up and running with this app is almost, but not quite, entirely unlike getting things running on an Arduino. No part of the Arduino IDE or libraries are used in this project. It's just a regular PC app written in C++ and based on FreeGLUT that has been set up in such a way that one of the `.cpp` files can also be used as an Arduino sketch. The app should compile and run on any platform where FreeGLUT is available, such as Linux, Mac and Windows.     
 
