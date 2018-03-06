@@ -143,10 +143,14 @@ void NeoPixelEmulator::drawLedRing()
     //new
     int NumberOfStripes = 18;
     int PxPerStripe = 150;
-    float StartAngle = 0;
-    float OffsetAngle = 15;
-    float pxDistance = 12;
-    float centerOfset = 20;
+    float StartAngle = 0f;
+    float OffsetAngle = 15f;
+    float pxDistance = 12f;
+    float centerOfset = 20f;
+
+    float xCenter = 500.0f;
+    float yCenter = 500.0f;
+    float ledRadius = 50.0f;
 
     for (int i = 0; i < NumberOfStripes; i++) {
         //For each stripe
@@ -163,28 +167,7 @@ void NeoPixelEmulator::drawLedRing()
 
     }
 
-    //old
-    float xCenter = 500.0f;
-    float yCenter = 500.0f;
-    float maxCircleRadius = 380.0f;
-    float maxLedRadius = 50.0f;
-    float ledToSpaceRatio = 2.0f;
 
-    float ledRadius = maxLedRadius;
-    float circleRadius = numPixels() * (ledRadius * ledToSpaceRatio) / (2.0f * M_PI);
-    if (circleRadius > maxCircleRadius) {
-        circleRadius = maxCircleRadius;
-        float c = circleRadius * 2.0f * M_PI;
-        ledRadius = c / numPixels() / ledToSpaceRatio;
-    }
-    for (int i = 0; i < numPixels(); ++i) {
-        uint32_t c = pixels[i];
-        uint8_t R, G, B;
-        colorPackedToScalar(&R, &G, &B, c);
-        drawFilledCircle(xCenter + (circleRadius * cos(i * 2.0f * M_PI / numPixels())),
-                         yCenter + (circleRadius * sin(i * 2.0f * M_PI / numPixels())),
-                         ledRadius, R, G, B);
-    }
 }
 
 // Draw LED grid where the LEDs are ordered in a continuous, back-and-forth sequence.
