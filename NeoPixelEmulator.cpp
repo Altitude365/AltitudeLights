@@ -160,14 +160,11 @@ void NeoPixelEmulator::drawLedRing()
             uint32_t c = pixels[CurrentPixel];
             uint8_t R, G, B;
             colorPackedToScalar(&R, &G, &B, c);
-            drawFilledCircle(xCenter + (CircleRadiusNow * cos((NumberOfStripes - i) * 1.5f * M_PI / NumberOfStripes)),
-                            yCenter + (CircleRadiusNow * sin((NumberOfStripes - i) * 1.5f * M_PI / NumberOfStripes)),
+            drawFilledCircle(xCenter + (CircleRadiusNow * cos(((NumberOfStripes - i) - 4) * 1.5f * M_PI / NumberOfStripes)),
+                            yCenter + (CircleRadiusNow * sin(((NumberOfStripes - i) - 4)  * 1.5f * M_PI / NumberOfStripes)),
                             ledRadius, R, G, B);
         }
-
     }
-
-
 }
 
 // Draw LED grid where the LEDs are ordered in a continuous, back-and-forth sequence.
