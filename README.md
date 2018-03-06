@@ -1,4 +1,4 @@
-#### Alitude Lights NeoPixel Emulator
+### Alitude Lights NeoPixel Emulator
 
 <img align="right" width="50%" src="./screenshot.png">
 
@@ -10,10 +10,15 @@ This is a tool to speed up development of animated patterns for [WS2812B](https:
 
 Help us code the coolest pixel patterns and win a brand new [thing] at the end of this summer.
 
-### Your code
+##### Your code
 The code is going to be imported and run in our physical installation for validation. The hardware we use is a [Particle photon](https://docs.particle.io/guide/getting-started/intro/photon/) and some functionality in the emulator might not be compatible with the photon libraries. So be careful with advanced code or external libraries.
 
-#### Setup and Use
+
+
+
+
+
+### Setup and Use
 These instructions should work on Ubuntu on WSL, Ubuntu, Mint and other Debian based systems.
 
 ##### Linux subsystem
