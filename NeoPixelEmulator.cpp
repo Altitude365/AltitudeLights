@@ -154,7 +154,7 @@ void NeoPixelEmulator::drawLedRing()
 
     for (int i = 0; i < NumberOfStripes; i++) {
         //For each stripe
-        CircleRadiusNow = centerOfset + (i * pxDistance);
+        float CircleRadiusNow = centerOfset + (i * pxDistance);
 
         for (int px = 0; px <PxPerStripe; px++) {
             uint32_t c = pixels[i];
