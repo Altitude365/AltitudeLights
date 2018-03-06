@@ -67,15 +67,15 @@ int extra, extra2;
 
 void loop()
 {
-    clear(0xff0000, 800);
-    delay(1000);
+    //clear(0xff0000, 800);
+    //delay(1000);
 
-    //for (int i=0; i < 250 ;i++){ 
-    //    extra = random(-30,40);
-    //    extra2 = random(-83,40);
-    //    pixels.setPixelColor(random(0, 2700), (36 + extra), (83 + extra2), (214 + extra));
-    //}
-    //pixels.show();
+    for (int i=0; i < 250 ;i++){ 
+        extra = random(-30,40);
+        extra2 = random(-83,40);
+        pixels.setPixelColor(random(0, 2700), (36 + extra), (83 + extra2), (214 + extra));
+    }
+    pixels.show();
 }
 
 void clear(u32 color, u16 clearMs)
