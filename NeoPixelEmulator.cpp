@@ -143,10 +143,10 @@ void NeoPixelEmulator::drawLedRing()
     //new
     int NumberOfStripes = 18;
     int PxPerStripe = 150;
-    float StartAngle = 0f;
-    float OffsetAngle = 15f;
-    float pxDistance = 12f;
-    float centerOfset = 20f;
+    float StartAngle = 1.0f;
+    float OffsetAngle = 15.0f;
+    float pxDistance = 12.0f;
+    float centerOfset = 20.0f;
 
     float xCenter = 500.0f;
     float yCenter = 500.0f;
