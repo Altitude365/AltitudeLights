@@ -73,7 +73,7 @@ void loop()
     for (i=0; i < 250 ;i++){ 
         extra = random(-30,40);
         extra2 = random(-83,40);
-        pixels.setPixelColor(random(2700), (36 + extra), (83 + extra2), (214 + extra));
+        pixels.setPixelColor(random(0, 2700), (36 + extra), (83 + extra2), (214 + extra));
     }
     pixels.show();
 }
