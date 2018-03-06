@@ -39,7 +39,7 @@ Restart you Computer
 ##### Graphic support for WSL
 Install [vcxsrv](https://sourceforge.net/projects/vcxsrv/)
 
-    $ export DISPLAY=:0export DISPLAY=:0
+    $ export DISPLAY=:0
     $ echo "export DISPLAY=:0.0" >> ~/.bashrc
     $ sudo touch /etc/dbus-1/session.conf
     $ sudo sed -i 's/<listen>.*<\/listen>/<listen>tcp:host=localhost,port=0<\/listen>/' /etc/dbus-1/session.conf
