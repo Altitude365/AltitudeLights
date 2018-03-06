@@ -18,7 +18,7 @@ These instructions should work on Ubuntu on WSL, Ubuntu, Mint and other Debian b
 
 ##### Linux subsystem
 If you are a Windows 10 user like me follow this guide to run the code on "Windows Subsystem for Linux" (WSL).
-If know what you are doing or if you are a linux user, just clone the code and get going.
+If know what you are doing or if you are a linux user, just clone the code and skip the WSL steps. 
 ```Powershell
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ```
