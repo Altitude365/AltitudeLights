@@ -7,7 +7,7 @@ This is a tool to speed up development of animated patterns for [WS2812B](https:
 
 #### Competition
 
-<img align="right" width="50%" src="./IRL.png">
+<img align="right" width="50%" src="IRL.PNG">
 
 Help us code the coolest pixel patterns and win a brand new [thing] at the end of this summer.
 
