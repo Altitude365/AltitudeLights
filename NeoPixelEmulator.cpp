@@ -154,10 +154,10 @@ void NeoPixelEmulator::drawLedRing()
 
     for (int i = 0; i < NumberOfStripes; i++) {
         //For each stripe
-        float CircleRadiusNow = centerOfset + (i * pxDistance);
         for (int px = 0; px <PxPerStripe; px++) {
+            float CircleRadiusNow = centerOfset + (px * pxDistance);
             int CurrentPixel = (150 * i) + px;
-            uint32_t c = pixels[i];
+            uint32_t c = pixels[CurrentPixel];
             uint8_t R, G, B;
             colorPackedToScalar(&R, &G, &B, c);
             drawFilledCircle(xCenter + (CircleRadiusNow * cos(i * 2.0f * M_PI / numPixels())),
