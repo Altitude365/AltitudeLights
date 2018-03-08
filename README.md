@@ -64,7 +64,7 @@ Install [xming](https://sourceforge.net/projects/xming/)
 Grab the code directly from this repository:
 
     $ git clone https://github.com/Altitude365/AltitudeLights.git
-    $ cd AltitudeLights
+    $ cd ./AltitudeLights
 
 or
 
