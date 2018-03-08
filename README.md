@@ -78,7 +78,7 @@ Grab the code directly from this repository:
 
     $ ./make.sh && ./emulator
     
-##### Create and win!!!
+## Create and win!!!
 
     $ nano ./arduino_sketch.cpp
 
