@@ -1,5 +1,4 @@
 
-
 #include <Adafruit_NeoPixel.h>
 #include <inttypes.h>
 
@@ -65,96 +64,25 @@ struct Segment {
   u8 lengthPercent;
 };
 
-int maxBlow = 120;
-
 int extra, extra2;
-
-int mainColor0 = 0xff0000;
-int mainColor1 = 0x33ff66;
-int mainColor2 = 0x0000ff;
-int noseColor = 0xffff00;
-
-int ColorMix(int px) {
-        switch (px % 3) {
-                case 0:
-                        return mainColor0;
-                        break;
-                case 1:
-                        return mainColor1;
-                        break;
-                case 2:
-                        return mainColor2;
-                        break;
-                }
-}
 
 int pixNumber(int stripe, int px) {
         return (stripe * 150) + px;
 }
-
-void WriteAllPixelsAt(int pos, int color) {
-	for (int i=0; i < 18; i++) {
-		int newPos = pos - (pos % 2 + random(1,3));
-		if (newPos < pos && newPos < maxBlow && newPos > 2) {
-   		      	int cpx = pixNumber(i, newPos);
-         		pixels.setPixelColor(cpx, color);
-		}
-       	}
+void WriteAllPixelsAt(int pos) {
+        for (int i=0; i < 18; i++) {
+         int cpx = pixNumber(i, pos);
+         pixels.setPixelColor(cpx, 0xff0000);
+        }
 }
-void WriteAllPixelsAt(int pos, int color, int flux) {
-     	for (int i=0; i < 18; i++) {
-              	int newPos = pos - (pos % 2 + random(1,3));
-             	if (newPos < pos && newPos < maxBlow && newPos > 2) {
-                      	int cpx = pixNumber(i, newPos);	
-                     	pixels.setPixelColor(cpx, ColorMix(((i * i) / flux) % 3));
-		}
-      	}
-}
-
-void ClearRandom(int start, int end){
-	int clearRate = 13;
-	for (int r=0; r < clearRate ; r++) {
-		for (int i=0; i < 18; i++) {
-         		int cpx = pixNumber(i, random(start,end));
-         		pixels.setPixelColor(cpx, 0x000000);
-        	}
-	}
-}
-
-
-void MoveRandom(int px) {
-	if (pixels.getPixelColor(px) != 0) {
-		if (px % 150 < maxBlow) {
-			int cc = pixels.getPixelColor(px);
-			pixels.setPixelColor(px, 0x000000);
-			pixels.setPixelColor(px + 1, cc);
-		}
-	}
-}
-
-int rnd = 4;
-
 int explode(int frame) {
-	if (frame < 20) {
-		int NewFrame = frame + ((frame * frame) / 5);
-		int l = 0;
-		for (int o=frame; o < NewFrame; o++) {
-			WriteAllPixelsAt(o, ColorMix(o), rnd);
-			l = o;
+	if (frame < 50) {
+		frame = (frame + (frame * 2);
+		for (int o=0; o < frame; o++) {
+			WriteAllPixelsAt(o);
+			
 		}
-		if (l > 2) { //nose color
-			WriteAllPixelsAt(l, noseColor);
-		}		
-	} 
-	if (frame > 5 && frame <= 20) { //black erace
-		WriteAllPixelsAt(frame - 5, 0x000000);
-	}
-	if (frame > 14) {
-		ClearRandom(0,maxBlow);
-		for (int i=0; i < 900; i++) {
-			MoveRandom(random(0,2699));
-		}
-	}
+	}	
 
 }
 

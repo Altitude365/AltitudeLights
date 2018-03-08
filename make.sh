@@ -1,7 +1,6 @@
 #!/bin/sh
 
 SKETCH=arduino_sketch
-#SKETCH=arduino_sketch_2
 
 ./makeheaders ${SKETCH}.cpp
 
