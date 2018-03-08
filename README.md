@@ -64,6 +64,10 @@ Grab the code directly from this repository:
     $ git clone https://github.com/Altitude365/AltitudeLights.git
     $ cd AltitudeLights
 
+or
+
+Fork this repo and clone your own, this way you'll be able to submitt your work as an pull request. 
+
 ##### makeheaders
 
     $ wget http://www.hwaci.com/sw/mkhdr/makeheaders.c
@@ -82,6 +86,14 @@ Grab the code directly from this repository:
 
     $ nano ./arduino_sketch.cpp
 
+### Submitting your code
+
+Send you *arduino_sketch* to jon.jander[alfakrull]altitude365.com
+
+or 
+
+rename your *arduino_sketch* to *arduino_sketch_[yourname]* and make a pull request. 
+
 
 #### Notes
 
@@ -99,3 +111,4 @@ Grab the code directly from this repository:
 
 * The emulator does not take into account that code runs more slowly on the device than on the PC. On the PC, virtually all the time will be spent in `delay()` calls but on the device, a non-significant portion of time is typically spent executing the program. The difference causes the sketch to run faster on the PC. The possible difference becomes larger the shorter the `delay()` is.
 
+* Thanks to Roger Dahl who is the original author of this emulator!
