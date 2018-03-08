@@ -38,6 +38,8 @@ Restart you Computer
 
 ##### Graphic support for WSL
 Install [vcxsrv](https://sourceforge.net/projects/vcxsrv/)
+or 
+Install [xming](https://sourceforge.net/projects/xming/)
 
     $ export DISPLAY=:0
     $ echo "export DISPLAY=:0.0" >> ~/.bashrc
