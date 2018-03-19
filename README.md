@@ -8,7 +8,11 @@ This is a tool to speed up development of animated patterns for [WS2812B](https:
 
 <img align="right" width="50%" src="IRL.PNG">
 
-Help us code the coolest pixel patterns and win a brand new [thing] at the end of this summer.
+Help us code the coolest pixel patterns, the winner will be announced at the end of the summer.
+
+* 1st price ASUS Windows Mixed Reality Headset + Particle Photon Kit
+* 2nd price Particle Photon Kit + Adafruit NeoPixel Digital RGB LED Strip
+* 3nd-5th price Particle Photon Kit
 
 ##### Your code
 The code is going to be imported and run in our physical installation for validation. The hardware we use is a [Particle photon](https://docs.particle.io/guide/getting-started/intro/photon/) and some functionality in the emulator might not be compatible with the photon libraries. So be careful with advanced code or external libraries.
