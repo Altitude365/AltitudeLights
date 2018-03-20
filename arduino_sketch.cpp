@@ -19,7 +19,7 @@ void setup()
 
 //Alittude functions
 int pixelsgetPixelColor(int px) {return pixels.getPixelColor(px);}
-void stripsSetPixelColor(int px, byte r ,byte g , byte b) {pixels.setPixelColor(px, r, g, b);}
+void stripsSetPixelColor(int px, int8_t r ,int8_t g , int8_t b) {pixels.setPixelColor(px, r, g, b);}
 void stripsSetPixelColor(int px, int color) {pixels.setPixelColor(px, color);}
 void stripsShow() {pixels.show();}
 //End of altitude function 

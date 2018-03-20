@@ -5,6 +5,7 @@
         "vector": "cpp",
         "xstring": "cpp",
         "xutility": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "cstddef": "cpp"
     }
 }
