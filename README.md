@@ -113,6 +113,10 @@ rename your *arduino_sketch* to *arduino_sketch_[yourname]* and make a pull requ
 
 * Stripes are ordered counterclockwise.
 
+* Stripes are 5M long.
+
+* Every other Stripe is approximately 20cm longer. The first stripe is long then short, long, short, ..., long 
+
 * Please use stripsShow(), pixelsgetPixelColor() and stripsSetPixelColor() instead of pixels.setPixelColor and pixels.getPixelColor. To facilitate IRL testing.
 
 * The `setBrightness()` call is ignored by the emulator and the `getBrightness()` call always returns the maximum brightness value of 255. As described on the [NeoPixel library home page](https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library), `setBrightness()` is "lossy" and intended for use only in `setup()`, not in animations. Since physical LEDs are brighter than a computer monitor even on low brightness settings, the LEDs are most accurately represented by rendering them with maximum brightness. By having the emulator ignore `setBrightness()`, the call can be used in the sketch to set the brightness of the physical LEDs without affecting the accuracy of the representation in the emulator and without the developer having to adjust the value when switching between the emulator and physical LEDs.
