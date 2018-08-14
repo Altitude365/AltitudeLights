@@ -1,0 +1,146 @@
+//plz dont change this part
+#include <Adafruit_NeoPixel.h>
+#include <inttypes.h>
+#include <cstdio>
+
+#define NEOPIXEL_PIN 1
+#define NUM_PIXELS 2700
+#define u8 uint8_t
+#define u16 uint16_t
+#define u32 uint32_t
+#define s16 int16_t
+Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUM_PIXELS, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
+
+void setup()
+{
+    pixels.begin();
+    pixels.setBrightness(50);
+    pixels.show();
+}
+
+//Alittude functions
+int pixelsgetPixelColor(int px) {return pixels.getPixelColor(px);}
+void stripsSetPixelColor(int px, int8_t r ,int8_t g , int8_t b) {pixels.setPixelColor(px, r, g, b);}
+void stripsSetPixelColor(int px, int color) {pixels.setPixelColor(px, color);}
+void stripsShow() {pixels.show();}
+//End of altitude function 
+
+/**
+ * 
+ * Please use stripsShow, pixelsgetPixelColor and stripsSetPixelColor,
+ * instead of pixels.setPixelColor and pixels.getPixelColor.
+ * We will change these functions in the final test to a modified version.
+ * We do this because we are using 3 stripes instead on one. 
+ * 
+ **/
+
+//Edit example below
+
+int next_cw(int i) {
+	int next = i;
+	if (i < NUM_PIXELS - 1) {
+		next = i + 1;
+	} else {
+		next = 0;
+	}
+	return next;
+}
+
+int next_counter_cw(int i) {
+	int next;
+	if (i > 0) {
+		next = i - 1;
+	} else {
+		next = NUM_PIXELS - 1;
+	}
+	return next;
+}
+
+void fill_one_color(int red, int green, int blue) {
+	for(int i = 0; i < NUM_PIXELS; i++ ) {
+		stripsSetPixelColor(i, red, green, blue);
+	}
+}
+
+void one_random_pixel() {
+	int x = random(0, NUM_PIXELS);
+	int red = random(0, 255);  
+	int green = random(0, 255);  
+	int blue = random(0, 255);  
+	stripsSetPixelColor(x, red, green, blue);
+}
+
+int direction=1;
+int ix=0;
+void bounce() {
+	ix += direction;
+	if (ix >= NUM_PIXELS) {
+		direction = -1;
+	}
+	if (ix <= 0) {
+		direction = 1;
+	}
+	for(int i = 0; i < NUM_PIXELS; i++ ) {
+		if (i == ix) {
+			stripsSetPixelColor(i, 255,0,0);
+		} else {
+			stripsSetPixelColor(i, 0, 0, 0);
+		}
+	}
+}
+
+void color_bounceFADE() {
+	ix += direction;
+	if (ix >= NUM_PIXELS) {
+		direction = -1;
+	}
+	if (ix <= 0) {
+		direction = 1;
+	}
+	for(int i = 0; i < NUM_PIXELS; i++ ) {
+		if (i == ix) {
+			stripsSetPixelColor(i, 255,0,0);
+		} else {
+			stripsSetPixelColor(i, 0, 0, 0);
+		}
+	}
+	int iL1 = next_cw(ix);
+	int iL2 = next_cw(iL1);
+	int iL3 = next_cw(iL2);
+	int iR1 = next_counter_cw(ix);
+	int iR2 = next_counter_cw(iR1);
+	int iR3 = next_counter_cw(iR2);
+	for(int i = 0; i < NUM_PIXELS; i++ ) {
+		if (i == ix) {
+			stripsSetPixelColor(i, 0,0,255);
+		} else if (i == iL1) {
+			stripsSetPixelColor(i, 0,0,150);
+		} else if (i == iL2) {
+			stripsSetPixelColor(i, 0,0,80);
+		} else if (i == iL3) {
+			stripsSetPixelColor(i, 0,0,20);
+		} else if (i == iR1) {
+			stripsSetPixelColor(i, 0,0,150);
+		} else if (i == iR2) {
+			stripsSetPixelColor(i, 0,0,80);
+		} else if (i == iR3) {
+			stripsSetPixelColor(i, 0,0,20);
+		} else {
+			stripsSetPixelColor(i, 0,0,0);
+		}
+	}
+}
+
+double init_time=millis();
+double timer = 0.0;
+void loop()
+{
+	timer = (millis() - init_time) / 1000.0;
+
+	//fill_one_color(40,40,40);
+	//bounce();
+	//one_random_pixel();
+	//color_bounceFADE();
+
+	stripsShow();
+}

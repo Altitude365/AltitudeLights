@@ -60,9 +60,6 @@ int gradientSineWave(double T, int durance, bool fadeIn) {
 	double freq = 2.0;
 	double falloff = 75.0;
 
-	if (T > durance) {
-		return 1;
-	}
 	for (int j = 0; j < 18; j++) { 
 		double r = j * 10;
 		double g = j * 10;
@@ -79,6 +76,9 @@ int gradientSineWave(double T, int durance, bool fadeIn) {
 			}
 			stripsSetPixelColor(i + 150*j, Wheel(strength, 255.0 * (sin(timer) + 1.0) * 0.5));
 		}
+	}
+	if (T > durance) {
+		return 1;
 	}
 	return 0;
 }
@@ -106,43 +106,6 @@ int bounce(double T, int r, int g, int b) {
 	return 0;
 }
 
-int snow(double T, int durance, bool randomColor) {
-	int r = 255;
-	int g = 255;
-	int b = 255;
-	double dist = 1.0;
-	for (int j = 149; j >= 0; j--) {
-		if (randomColor) {
-			r = random(j,255);
-			g = random(j,255);
-			b = random(j,255);
-		} else {
-			dist = 0.1 + (j/150.0);
-		}
-		for (int i = 0; i < 18; i++) {
-			int rand = random(0,36); 
-			if (rand < 1) {
-				stripsSetPixelColor(i*150, r * dist, g * dist, b * dist);
-			} else {
-				stripsSetPixelColor(i*150, 0,0,0);
-			}
-			int color = pixelsgetPixelColor(i*150 + j);
-			if (color <= 0) {
-				stripsSetPixelColor(i*150+j+1, 0,0,0);
-			} else {
-				stripsSetPixelColor(i*150+j+1, r * dist, g * dist, b * dist);
-			}
-		}
-	}
-	if (!randomColor) {
-		delay(50);
-	}
-	if (T > durance) {
-		return 1;
-	}
-	return 0;
-}
-
 void loop()
 {
 	timer = (millis() - init_time) / 1000.0;
@@ -157,25 +120,22 @@ void loop()
 		variant += gradientSineWave(timer, 10, true);
 		break;
 		case 1:
-		variant += gradientSineWave(timer, 20, false);
+		variant += bounce(timer, 255, 0, 0);
 		break;
 		case 2:
-		variant += bounce(timer, 255, 0, 0);
-		bounce(timer, 0, 255, 0);
+		variant += bounce(timer, 0, 255, 0);
 		break;
 		case 3:
 		variant += bounce(timer, 0, 0, 255);
-		bounce(timer, 255, 0, 255);
 		break;
 		case 4:
-		variant += bounce(timer, 255, 255, 0);
-		bounce(timer, 0, 255, 255);
+		variant += bounce(timer, 255, 0, 255);
 		break;
 		case 5:
-		variant += snow(timer, 60, false);
+		variant += bounce(timer, 0, 255, 255);
 		break;
 		case 6:
-		variant += snow(timer, 70, true);
+		variant += gradientSineWave(timer, 50, false);
 		break;
 		default:
 		variant = 0;

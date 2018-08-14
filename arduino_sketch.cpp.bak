@@ -54,15 +54,12 @@ uint32_t Wheel(double strength, uint32_t WheelPos) {
 int init_time=millis();
 double timer = 0.0;
 
-int gradientSineWave(double T, int durance, bool fadeIn) {
+void gradientSineWave(double T) {
 	double offset = 65.0;
 	double dist = 65.0;
 	double freq = 2.0;
 	double falloff = 75.0;
 
-	if (T > durance) {
-		return 1;
-	}
 	for (int j = 0; j < 18; j++) { 
 		double r = j * 10;
 		double g = j * 10;
@@ -73,74 +70,25 @@ int gradientSineWave(double T, int durance, bool fadeIn) {
 			double tmp = abs(i-x);
 			if (tmp > falloff)
 				tmp = falloff;
-			double strength = (1.0 - (tmp/falloff)) * (1.0 - T/durance);
-			if (fadeIn) {
-				strength = (1.0 - (tmp/falloff)) * T/durance;
-			}
+
+			double strength = (1.0 - (tmp/falloff)) * (1.0 - T/10.0);
 			stripsSetPixelColor(i + 150*j, Wheel(strength, 255.0 * (sin(timer) + 1.0) * 0.5));
 		}
 	}
-	return 0;
 }
 
-int variant = 0;
-int direction = 1;
-int ix = 0;
-int bounce(double T, int r, int g, int b) {
-	if (ix > NUM_PIXELS) {
-		ix = NUM_PIXELS-variant-1;
-		direction *= -1;
-		return 1;
-	}
-	if (ix < 0) {
-		ix = variant;
-		direction = 1;
-		return 1;
-	}
-	for (int i = 0; i < NUM_PIXELS; i++) {
-		if (i == ix) {
-			stripsSetPixelColor(i,r,g,b);
-		} 
-	}
-	ix += direction * 5;
-	return 0;
-}
+double old_x = 150.0;
+int y = 0;
+void bounce(double T) {
+	double freq = 2.0;
+	double amp = 150.0;
+	int bounce_x = amp * sin(timer * freq);
 
-int snow(double T, int durance, bool randomColor) {
-	int r = 255;
-	int g = 255;
-	int b = 255;
-	double dist = 1.0;
-	for (int j = 149; j >= 0; j--) {
-		if (randomColor) {
-			r = random(j,255);
-			g = random(j,255);
-			b = random(j,255);
-		} else {
-			dist = 0.1 + (j/150.0);
-		}
-		for (int i = 0; i < 18; i++) {
-			int rand = random(0,36); 
-			if (rand < 1) {
-				stripsSetPixelColor(i*150, r * dist, g * dist, b * dist);
-			} else {
-				stripsSetPixelColor(i*150, 0,0,0);
-			}
-			int color = pixelsgetPixelColor(i*150 + j);
-			if (color <= 0) {
-				stripsSetPixelColor(i*150+j+1, 0,0,0);
-			} else {
-				stripsSetPixelColor(i*150+j+1, r * dist, g * dist, b * dist);
-			}
-		}
+	for (int i = 0; i < 150; i++) {
+		stripsSetPixelColor(i, 255,255,255);
 	}
-	if (!randomColor) {
-		delay(50);
-	}
-	if (T > durance) {
-		return 1;
-	}
-	return 0;
+
+	old_x = bounce_x;
 }
 
 void loop()
@@ -149,39 +97,15 @@ void loop()
 	//clear(0xff0000, 5);
 	//delay(1000);
 
-	switch (variant) {
-		case 0:
-		for (int i=0; i < NUM_PIXELS; i++) {
-			stripsSetPixelColor(i, 40, 40, 40);
-		}
-		variant += gradientSineWave(timer, 10, true);
-		break;
-		case 1:
-		variant += gradientSineWave(timer, 20, false);
-		break;
-		case 2:
-		variant += bounce(timer, 255, 0, 0);
-		bounce(timer, 0, 255, 0);
-		break;
-		case 3:
-		variant += bounce(timer, 0, 0, 255);
-		bounce(timer, 255, 0, 255);
-		break;
-		case 4:
-		variant += bounce(timer, 255, 255, 0);
-		bounce(timer, 0, 255, 255);
-		break;
-		case 5:
-		variant += snow(timer, 60, false);
-		break;
-		case 6:
-		variant += snow(timer, 70, true);
-		break;
-		default:
-		variant = 0;
-		init_time=millis();
-		break;
+	for (int i=0; i < NUM_PIXELS; i++) {
+		stripsSetPixelColor(i, 40, 40, 40);
 	}
+
+	//if (timer < 10.0) {
+//		gradientSineWave(timer);
+//	} else if (timer < 20.0 ) {
+		bounce(timer);
+//	}
 
 	stripsShow();
 }
