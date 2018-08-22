@@ -1,9 +1,6 @@
 //plz dont change this part
 #include <Adafruit_NeoPixel.h>
 #include <inttypes.h>
-#include <math.h>
-#include <time.h>
-#include <stdio.h>      /* printf */
 
 #define NEOPIXEL_PIN 1
 #define NUM_PIXELS 2700
